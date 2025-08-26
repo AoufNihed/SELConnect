@@ -1,0 +1,20 @@
+; SEL QuickSet Import Template - generated
+; Relay ID: Relay03
+
+[Device]
+Model=SEL-751
+Serial=751-0003
+
+[CT/PT]
+CT Primary=200
+CT Secondary=5
+PT Primary=13200
+PT Secondary=110
+
+[Protection]
+50P1T Pickup=350
+51P1T Time=0.6
+
+[Comm]
+Baud=9600
+Protocol=Modbus

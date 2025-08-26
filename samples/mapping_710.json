@@ -1,0 +1,97 @@
+{
+  "device": {
+    "regex": "^DEVICE:\\s*(.+)$",
+    "group": 1,
+    "post": [
+      "strip"
+    ]
+  },
+  "serial": {
+    "regex": "^SERIAL:\\s*(.+)$",
+    "group": 1,
+    "post": [
+      "strip"
+    ]
+  },
+  "ct_primary_A": {
+    "kv_key": "CT_PRIMARY",
+    "post": [
+      "strip_units",
+      "to_float"
+    ]
+  },
+  "ct_secondary_A": {
+    "kv_key": "CT_SECONDARY",
+    "post": [
+      "strip_units",
+      "to_float"
+    ]
+  },
+  "pt_primary_V": {
+    "kv_key": "PT_PRIMARY",
+    "post": [
+      "strip_units",
+      "to_float"
+    ]
+  },
+  "pt_secondary_V": {
+    "kv_key": "PT_SECONDARY",
+    "post": [
+      "strip_units",
+      "to_float"
+    ]
+  },
+  "oc_50p1t_pickup_A": {
+    "kv_key": "50P1T",
+    "post": [
+      "strip_units",
+      "to_float"
+    ]
+  },
+  "oc_51p1t_time_s": {
+    "kv_key": "51P1T_TIME",
+    "post": [
+      "strip_units",
+      "to_float"
+    ]
+  },
+  "oc_51p1t_curve": {
+    "kv_key": "51P1T_CURVE",
+    "post": [
+      "strip"
+    ]
+  },
+  "oc_50q1t_pickup_A": {
+    "kv_key": "50Q1T",
+    "post": [
+      "strip_units",
+      "to_float"
+    ]
+  },
+  "uf_81d1t_freq_Hz": {
+    "kv_key": "81D1T",
+    "post": [
+      "strip_units",
+      "to_float"
+    ]
+  },
+  "uv_27p1t_pu": {
+    "kv_key": "27P1T",
+    "post": [
+      "strip_units",
+      "to_float"
+    ]
+  },
+  "comm_port1_baud": {
+    "kv_key": "COMM.PORT1.BAUD",
+    "post": [
+      "to_int"
+    ]
+  },
+  "comm_port1_protocol": {
+    "kv_key": "COMM.PORT1.PROTOCOL",
+    "post": [
+      "upper"
+    ]
+  }
+}

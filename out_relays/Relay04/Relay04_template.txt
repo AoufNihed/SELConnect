@@ -1,0 +1,20 @@
+; SEL QuickSet Import Template - generated
+; Relay ID: Relay04
+
+[Device]
+Model=SEL-351
+Serial=351-0004
+
+[CT/PT]
+CT Primary=600
+CT Secondary=5
+PT Primary=22000
+PT Secondary=110
+
+[Protection]
+50P1T Pickup=600
+51P1T Time=0.7
+
+[Comm]
+Baud=19200
+Protocol=DNP3

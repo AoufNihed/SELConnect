@@ -1,0 +1,13 @@
+python -m selprotopy.cli extract `
+  --rdb samples/sample_710.rdb `
+  --mapping samples/mapping_710.json `
+  --out extracted.csv
+
+python -m selprotopy.cli generate `    ----> ASP Bug : fix RDB sturcture to full .rdb in QuickSet
+  --csv samples/config_input.csv `
+  --out generated.rdb
+
+
+  python -m selprotopy.cli generate `
+  --csv samples/config_input.csv `
+  --out generated_template.txt

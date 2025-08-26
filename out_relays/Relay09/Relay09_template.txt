@@ -1,0 +1,20 @@
+; SEL QuickSet Import Template - generated
+; Relay ID: Relay09
+
+[Device]
+Model=SEL-487E
+Serial=487-0009
+
+[CT/PT]
+CT Primary=900
+CT Secondary=1
+PT Primary=33000
+PT Secondary=110
+
+[Protection]
+50P1T Pickup=800
+51P1T Time=0.9
+
+[Comm]
+Baud=19200
+Protocol=DNP3

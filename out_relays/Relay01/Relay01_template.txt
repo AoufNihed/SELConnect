@@ -1,0 +1,20 @@
+; SEL QuickSet Import Template - generated
+; Relay ID: Relay01
+
+[Device]
+Model=SEL-710
+Serial=710-0001
+
+[CT/PT]
+CT Primary=400
+CT Secondary=5
+PT Primary=11000
+PT Secondary=110
+
+[Protection]
+50P1T Pickup=500
+51P1T Time=0.5
+
+[Comm]
+Baud=9600
+Protocol=DNP3

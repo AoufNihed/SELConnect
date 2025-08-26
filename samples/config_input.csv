@@ -1,0 +1,2 @@
+device,serial,ct_primary_A,ct_secondary_A,pt_primary_V,pt_secondary_V,oc_50p1t_pickup_A,oc_51p1t_time_s,oc_51p1t_curve,oc_50q1t_pickup_A,uf_81d1t_freq_Hz,uv_27p1t_pu,comm_port1_baud,comm_port1_protocol
+SEL-710-5,7105-654321,400,5,11000,110,500,0.5,IEC Normal Inverse,60,48.0,0.80 pu,9600,DNP3
