@@ -1,8 +1,7 @@
-
-# SELPROTOPY_RAAS
+# SELConnect
 
 ## Overview
-SELPROTOPY_RAAS is a Python-based automation toolkit designed to streamline the configuration and protection settings of SEL relays (such as SEL-710, SEL-751) using Python, QuickSet, and RTAC. The system automates the generation of relay configuration files from a centralized Master CSV, eliminating manual programming and reducing human error.
+SELConnect is a Python-based automation toolkit designed to streamline the configuration and protection settings of SEL relays (such as SEL-710, SEL-751) using Python, QuickSet, and RTAC. The system automates the generation of relay configuration files from a centralized Master CSV, eliminating manual programming and reducing human error.
 
 ## Technical Architecture
 - **Python Automation**: Core scripts parse a Master CSV containing all relay settings and generate individual configuration files for each relay.
@@ -91,6 +90,7 @@ SELPROTOPY_RAAS is a Python-based automation toolkit designed to streamline the 
 
 
 ---
+
+---
 Developed by AOUF Nihed during internship at Ateam Pro-tech.
 
-#
