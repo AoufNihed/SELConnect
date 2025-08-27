@@ -59,21 +59,6 @@ SELConnect is a Python-based automation toolkit designed to streamline the confi
 
 - Other files:
 	- `extracted.csv`, `relay_settings.csv`, `run.txt`, `test_results.txt`: Generated or log files for tracking outputs and results.
-
-## Usage
-1. Prepare the Master CSV with all relay settings.
-2. Run the generator script:
-	 ```powershell
-	 python -m selprotopy.multi_generator --out out_relays
-	 ```
-3. Import generated files into QuickSet or Architect as needed.
-
-## Requirements
-- Python 3.11+
-- SEL QuickSet
-- SEL Architect
-- RTAC (for integration)
-
 ## Usage
 1. Prepare the Master CSV with all relay settings.
 2. Run the generator script:
@@ -87,10 +72,6 @@ SELConnect is a Python-based automation toolkit designed to streamline the confi
 - SEL QuickSet
 - SEL Architect
 - RTAC (for integration)
-
-
----
-
 ---
 Developed by AOUF Nihed during internship at Ateam Pro-tech.
 
