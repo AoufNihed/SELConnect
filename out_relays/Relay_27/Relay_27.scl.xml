@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='utf-8'?>
+<SCL xmlns="http://www.iec.ch/61850/2003/SCL" version="2007" revision="B"><Header id="Relay_27_header"><Revision>1</Revision></Header><IED name="Relay_27"><Manufacturer /><AccessPoint name="AP1"><Server><LDevice inst="LD1"><LN lnClass="PTOC" inst="1" lnType="PTOC"><DO name="Opn"><DA name="stVal" /></DO></LN></LDevice></Server></AccessPoint></IED></SCL>

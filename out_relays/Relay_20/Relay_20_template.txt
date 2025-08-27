@@ -1,0 +1,20 @@
+; SEL QuickSet Import Template - generated
+; Relay ID: Relay_20
+
+[Device]
+Model=
+Serial=
+
+[CT/PT]
+CT Primary=
+CT Secondary=
+PT Primary=
+PT Secondary=
+
+[Protection]
+50P1T Pickup=
+51P1T Time=
+
+[Comm]
+Baud=
+Protocol=

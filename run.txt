@@ -11,3 +11,5 @@ python -m selprotopy.cli generate `    ----> ASP Bug : fix RDB sturcture to full
   python -m selprotopy.cli generate `
   --csv samples/config_input.csv `
   --out generated_template.txt
+
+  C:\Users\Dell\anaconda3\envs\relife_py311\python.exe rdb.py
