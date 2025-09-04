@@ -1,22 +1,24 @@
-# SELConnect - Project Overview
+# SELConnect - Enhanced with SEL_RDB Integration
 
 ## Project Summary
 
-SELConnect is a Python-based automation toolkit designed to streamline the configuration and protection settings of SEL relays (such as SEL-710, SEL-751) using Python, QuickSet, and RTAC. The system automates the generation of relay configuration files from a centralized Master CSV, eliminating manual programming and reducing human error.
+SELConnect is a Python-based automation toolkit that streamlines the configuration of SEL relays by automatically generating configuration files from centralized data sources. This enhanced version uses the official SEL_RDB library to create perfect RDB files that work directly with QuickSet.
 
 ## Key Features
 
-1. **Automated Configuration Generation**: Automatically generates relay configuration files from a centralized Master CSV
-2. **Batch Processing**: Supports batch configuration for multiple relays (10-50 units), enabling scalable deployment
-3. **Multiple Output Formats**: Generates both QuickSet template files (.txt) and SCL XML files for RTAC integration
-4. **Error Reduction**: Eliminates manual programming errors by automating the configuration process
-5. **Standardization**: Ensures consistent configuration across all relays through centralized data management
+1. **Perfect RDB Generation**: Automatically generates true compound RDB files using the SEL_RDB library
+2. **Direct QuickSet Compatibility**: Generated files can be read directly by QuickSet without import
+3. **Batch Processing**: Supports batch configuration for multiple relays (10-50 units)
+4. **Multiple Output Formats**: Generates both perfect RDB files and SCL XML files for RTAC integration
+5. **Error Reduction**: Eliminates manual programming errors by automating the configuration process
+6. **Standardization**: Ensures consistent configuration across all relays through centralized data management
 
 ## Technical Architecture
 
 ### Core Components
 
 - **Python Automation**: Core scripts parse a Master CSV containing all relay settings and generate individual configuration files for each relay
+- **SEL_RDB Integration**: Uses the official SEL_RDB library (https://github.com/AoufNihed/SEL_RDB) for perfect RDB file generation
 - **Relay Support**: Supports various SEL relay models including SEL-710, SEL-751, SEL-351, SEL-487E
 - **Integration**: Generated files are compatible with SEL QuickSet for relay programming and can be imported into SEL Architect for RTAC integration (DNP3/IEC61850 protocols)
 - **Data Organization**: All relay parameters (e.g., FLA, CTR, VNOM) are consolidated in a single CSV, with automated reporting for transparency and standardization
@@ -27,18 +29,18 @@ SELConnect is a Python-based automation toolkit designed to streamline the confi
 2. **multi_generator.py**: Generates configuration files for multiple relays based on the Master CSV
 3. **rdb_parser.py**: Low-level parser for SEL RDB files (regex-based)
 4. **extractor.py**: Extracts relay settings from RDB files using mapping definitions
-5. **template_generator.py**: Produces relay-specific templates for configuration
+5. **enhanced_rdb_generator.py**: Core implementation using SEL_RDB library for perfect RDB generation
 6. **csv_report.py**: Generates summary reports and exports processed data to CSV
 
 ## Problems Solved
 
 ### A. Manual Configuration
 - **Problem**: Manual relay setup in QuickSet is time-consuming and prone to human error
-- **Solution**: Python scripts automatically generate configuration files from the Master CSV, ensuring consistency and accuracy
+- **Solution**: Python scripts automatically generate perfect RDB files from the Master CSV, ensuring consistency and accuracy
 
 ### B. Managing Multiple Relays
 - **Problem**: Manual management of dozens of relays is inefficient and error-prone
-- **Solution**: The Master CSV and generator produce ready-to-use configuration files for each relay, simplifying bulk operations
+- **Solution**: The Master CSV and generator produce ready-to-use perfect RDB files for each relay, simplifying bulk operations
 
 ### C. RTAC Integration
 - **Problem**: Manual setup of communication protocols (DNP3/IEC61850) in Architect is complex
@@ -48,45 +50,20 @@ SELConnect is a Python-based automation toolkit designed to streamline the confi
 - **Problem**: Tracking relay values (FLA, CTR, VNOM, etc.) is difficult when data is scattered
 - **Solution**: All data is organized in a single CSV, with automated reports for easy auditing and standardization
 
-## Project Structure
-
-```
-├── selprotopy/                 # Main Python package containing all automation logic
-│   ├── cli.py                  # Command-line interface
-│   ├── extractor.py            # Extracts relay settings from RDB files
-│   ├── multi_generator.py      # Generates configuration files for multiple relays
-│   ├── rdb_parser.py           # Low-level parser for SEL RDB files
-│   ├── template_generator.py   # Produces relay-specific templates
-│   ├── csv_report.py           # Generates summary reports
-│   └── __init__.py             # Package initialization
-├── samples/                    # Sample input files for testing and demonstration
-│   ├── Master.csv              # Centralized relay settings for batch generation
-│   ├── config_input.csv        # Example configuration input for relays
-│   ├── mapping_710.json        # Field mapping definitions for extraction logic
-│   └── sample_710.rdb          # Example SEL-710 relay database file
-├── out_relays/                 # Output directory for generated relay configuration files
-│   ├── Relay01/                # Each relay has its own subfolder
-│   │   ├── Relay01_template.txt # Generated template for the relay
-│   │   └── Relay01.scl.xml     # SCL XML file for integration with Architect/RTAC
-│   └── ...                     # Additional relay folders
-├── tests/                      # Unit tests for all major modules
-│   ├── test_csv_report.py
-│   ├── test_extractor.py
-│   ├── test_rdb_generator.py
-│   └── test_rdb_parser.py
-├── README.md                   # Project documentation and technical overview
-├── pyproject.toml              # Python project configuration and dependencies
-└── Other files                 # Generated or log files (extracted.csv, relay_settings.csv, etc.)
-```
-
 ## Usage
 
-1. Prepare the Master CSV with all relay settings
-2. Run the generator script:
-   ```bash
-   python -m selprotopy.multi_generator --out out_relays
-   ```
-3. Import generated files into QuickSet or Architect as needed
+### 1. Prepare the Master CSV with all relay settings
+
+### 2. Generate perfect RDB files:
+```bash
+# Generate a single perfect RDB file
+python -m selprotopy.cli generate --csv config.csv --out relay.rdb --perfect
+
+# Generate perfect RDB files for multiple relays
+python -m selprotopy.multi_generator --csv Master.csv --out output_directory --perfect
+```
+
+### 3. Use generated files directly in QuickSet or import into Architect as needed
 
 ## Requirements
 
@@ -94,36 +71,17 @@ SELConnect is a Python-based automation toolkit designed to streamline the confi
 - SEL QuickSet
 - SEL Architect
 - RTAC (for integration)
+- SEL_RDB library
 
 ## Sample Output
 
-The tool generates two types of files for each relay:
+### Perfect Compound RDB File:
+- File size: ~55KB (vs ~300 bytes for text files)
+- Format: OLE2 structured storage (compound document)
+- Usage: Direct reading by QuickSet
+- Structure: Proper internal directory with streams
 
-1. **QuickSet Template (.txt)**:
-   ```
-   ; SEL QuickSet Import Template - generated
-   ; Relay ID: Relay01
-
-   [Device]
-   Model=SEL-710
-   Serial=710-0001
-
-   [CT/PT]
-   CT Primary=400
-   CT Secondary=5
-   PT Primary=11000
-   PT Secondary=110
-
-   [Protection]
-   50P1T Pickup=500
-   51P1T Time=0.5
-
-   [Comm]
-   Baud=9600
-   Protocol=DNP3
-   ```
-
-2. **SCL XML File**: For RTAC integration with IEC61850 protocol support
+### SCL XML File: For RTAC integration with IEC61850 protocol support
 
 ## Development Information
 
@@ -131,5 +89,6 @@ The tool generates two types of files for each relay:
 - Project uses setuptools for packaging
 - Includes comprehensive unit tests for all major modules
 - Command-line interface available via `selprotopy-extract` command
+- Enhanced with official SEL_RDB library integration for perfect RDB generation
 
-This project significantly reduces the time and effort required to configure multiple SEL relays while ensuring consistency and reducing human error in the process.
+This enhanced project significantly reduces the time and effort required to configure multiple SEL relays while ensuring consistency and reducing human error in the process, using the official SEL_RDB library for perfect compatibility.
