@@ -1,10 +1,10 @@
 from __future__ import annotations
 import argparse, json, sys
+import os
 from .rdb_parser import load_rdb_file
 from .extractor import extract_fields
 from .csv_report import write_single_csv
-from .template_generator import TemplateGenerator
- 
+from .rdb_generator import RDBGenerator
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description="Selprotopy CLI (extract & generate)")
@@ -20,6 +20,7 @@ def main(argv=None):
     p_gen = sub.add_parser("generate", help="Generate .rdb file from CSV config")
     p_gen.add_argument("--csv", required=True, help="Path to input CSV with config values")
     p_gen.add_argument("--out", required=True, help="Output RDB file path")
+    p_gen.add_argument("--perfect", action="store_true", help="Generate perfect compound RDB file using SEL_RDB")
 
     args = parser.parse_args(argv)
 
@@ -32,13 +33,25 @@ def main(argv=None):
         return 0
     
     elif args.cmd == "generate":
-        gen = TemplateGenerator(args.csv, args.out)
-        result = gen.generate()
-        print(f"[OK] Generated QuickSet Template: {result}")
+        # Use the unified RDB generator
+        generator = RDBGenerator()
+        if args.perfect:
+            # Generate perfect compound RDB file using SEL_RDB
+            result_path, success, message = generator.create_perfect_rdb_from_csv(args.csv, args.out)
+            if success:
+                print(f"[OK] Generated perfect RDB file using SEL_RDB: {result_path}")
+            else:
+                print(f"[ERROR] Failed to generate perfect RDB file: {message}")
+                return 1
+        else:
+            # Generate perfect RDB file using SEL_RDB (default behavior)
+            result_path, success, message = generator.create_perfect_rdb_from_csv(args.csv, args.out)
+            if success:
+                print(f"[OK] Generated RDB file using SEL_RDB: {result_path}")
+            else:
+                print(f"[ERROR] Failed to generate RDB file: {message}")
+                return 1
         return 0
-
-
-
 
     return 1
 
