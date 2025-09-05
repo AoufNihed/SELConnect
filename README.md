@@ -1,3 +1,7 @@
+<p align="center">
+  <img width="2500" height="857" alt="SEL Schweitzer Engineering Laboratories" src="Logo.png" />
+</p>
+
 # SELConnect - Enhanced with SEL_RDB Integration
 
 ## Project Summary
